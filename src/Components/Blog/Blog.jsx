@@ -21,12 +21,12 @@ const Blog = ({ blog, handleBookMark, handleMarkAsRead }) => {
 
                     <div className="flex">
                         {
-                            blog.hashtags.map(hash => <p>{hash}</p>)
+                            blog.hashtags.map(hash => <p key={hash}>{hash}</p>)
                         }
                     </div>
                     <div className="card-actions justify-end">
                         <button></button>
-                        <button onClick={() =>handleMarkAsRead(blog.reading_time)} className="btn btn-primary">Mark as read</button>
+                        <button onClick={() =>handleMarkAsRead(blog.reading_time, blog.id)} className="btn btn-primary">Mark as read</button>
                     </div>
                 </div>
             </div>

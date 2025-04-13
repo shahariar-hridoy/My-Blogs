@@ -12,9 +12,15 @@ function App() {
 
   }
 
-  const handleMarkAsRead = (time) => {
+  const handleMarkAsRead = (time, id) => {
     const newTime = readingCount + time;
     setReadingCount(newTime);
+    handleRemoveFromBookmark(id)
+  }
+
+  const handleRemoveFromBookmark = (id) => {
+    const remainignBookMark = bookmarked.filter((mark) => mark.id !== id)
+    setBookMarked(remainignBookMark)
   }
 
   return (
@@ -24,13 +30,13 @@ function App() {
       <div className="main-container flex text-center">
         <div className="left-container w-[70%] ">
 
-          <Blogs handleBookMark={handleBookMark} handleMarkAsRead = {handleMarkAsRead}></Blogs>
+          <Blogs handleBookMark={handleBookMark} handleMarkAsRead={handleMarkAsRead}></Blogs>
         </div>
         <div className="right-container w-[30%] ">
           <h1>Reading time: {readingCount} </h1>
           <h1>Bookmark Count: {bookmarked.length}</h1>
           {
-            bookmarked.map(marked => <p>{marked.title}</p>)
+            bookmarked.map(marked => <p key={marked.id} className='bg-amber-400 p-2 shadow-blue-500 m-2 rounded-xl text-slate-900'>{marked.title}</p>)
           }
         </div>
       </div>
